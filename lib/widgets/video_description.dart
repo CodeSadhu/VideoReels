@@ -13,7 +13,7 @@ class VideoDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '@atharva',
+            '@codesadhu',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Text('Video Title'),
@@ -22,9 +22,10 @@ class VideoDescription extends StatelessWidget {
               Icon(
                 Icons.music_note,
                 size: 15,
+								color: Colors.white,
               ),
               Text(
-                'Artist Name - Album Name - Song',
+                'Song Name - Category',
                 style: TextStyle(fontSize: 12),
               ),
             ],
