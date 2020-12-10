@@ -10,24 +10,32 @@ class _VideoDescriptionState extends State<VideoDescription> {
 
 	VideoPlayerController playerController;
 	VoidCallback listener;
+	Future<void> initializeVideoPlayerFuture;
 
 	@override
   void initState() {
     // TODO: implement initState
-    super.initState();
+    
+		playerController = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4");
+		initializeVideoPlayerFuture = playerController.initialize();
 		listener = () {
 			setState(() {
 			  
 			});
 		};
+		super.initState();
   }
 
 	void createVideo() {
 		if (playerController == null) {
-			playerController = VideoPlayerController.asset("assets/videos/rudra.mp4")
+			// playerController = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4")
+			// ..addListener(listener)
+			// ..setVolume(1.0)
+			// ..initialize()
+			// ..play();
+			playerController
 			..addListener(listener)
 			..setVolume(1.0)
-			..initialize()
 			..play();
 		}
 		else {
@@ -40,6 +48,13 @@ class _VideoDescriptionState extends State<VideoDescription> {
 			}
 		}
 	}
+
+	@override
+  void dispose() {
+    // TODO: implement dispose
+    playerController.dispose();
+		super.dispose();
+  }
 
 	// void toggle() {
 	// 		createVideo();
@@ -65,7 +80,7 @@ class _VideoDescriptionState extends State<VideoDescription> {
           Center(
 					// color: Colors.blue,
             child: AspectRatio(
-							aspectRatio: 16/9,
+							aspectRatio: playerController.value.aspectRatio,
 							child: playerController != null
 							? VideoPlayer(playerController)
 							: Container(),
@@ -75,10 +90,16 @@ class _VideoDescriptionState extends State<VideoDescription> {
 						bottom: 90,
 						right: 30,
 						child: FloatingActionButton(
-							child: Icon(Icons.play_arrow),
+							child: Icon(
+								playerController.value.isPlaying ? Icons.pause : Icons.play_arrow
+							),
 							onPressed: () {
-								createVideo();
-								playerController.play();
+								if (playerController.value.isPlaying)
+									playerController.pause();
+								else {
+									createVideo();
+									playerController.play();
+								}
 							},
 						),
 					),
@@ -86,7 +107,7 @@ class _VideoDescriptionState extends State<VideoDescription> {
 						padding: EdgeInsets.only(top: 720),
 						child: Container(
             height: 70,
-            color: Colors.red,
+            // color: Colors.red,
             padding: EdgeInsets.all(5),
             child: Column(
               mainAxisSize: MainAxisSize.min,
