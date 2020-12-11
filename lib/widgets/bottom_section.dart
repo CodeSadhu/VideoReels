@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_reels/widgets/custom_slider.dart';
 
 class BottomSection extends StatefulWidget {
   @override
@@ -22,9 +23,24 @@ class _BottomSectionState extends State<BottomSection> {
         Padding(
           padding: EdgeInsets.only(bottom: 20),
           child: SliderTheme(
-            data: SliderThemeData(
-              thumbColor: Colors.yellow[800],
-              activeTrackColor: Colors.yellow[700]
+            data: SliderTheme.of(context).copyWith(
+              activeTrackColor: Colors.yellow[700],
+              inactiveTrackColor: Colors.yellow[100],
+              trackHeight: 4.0,
+              thumbShape: CustomSliderThumbCircle(
+                thumbRadius: 12
+              ),
+              thumbColor: Colors.amber[700],
+              overlayColor: Colors.amber.withAlpha(32),
+              overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+              tickMarkShape: RoundSliderTickMarkShape(),
+              activeTickMarkColor: Colors.white,
+              inactiveTickMarkColor: Colors.yellow[900],
+              valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+              valueIndicatorColor: Colors.amberAccent,
+              valueIndicatorTextStyle: TextStyle(
+                color: Colors.white,
+              ),
             ),
             child: Slider(
               min: 0,
