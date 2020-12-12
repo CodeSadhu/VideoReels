@@ -28,7 +28,7 @@ class _VideoDescriptionState extends State<VideoDescription> {
 		if (playerController == null) {
 			playerController = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4")
 			..initialize()
-      ..addListener(listener)
+			..addListener(listener)
 			..setVolume(1.0)
 			..play();
 		}
@@ -87,12 +87,12 @@ class _VideoDescriptionState extends State<VideoDescription> {
 								color: Colors.yellow.shade600,
 								padding: EdgeInsets.all(8),
 								child: Icon(
-                  playerController.value.isPlaying
-                  ? Icons.pause
-                  : Icons.play_arrow,
-                  size: 20,
-                  // color: Colors.white,
-                ),
+									playerController.value.isPlaying
+									? Icons.pause
+									: Icons.play_arrow,
+									size: 20,
+									// color: Colors.white,
+								),
 							),
 						),
 					),

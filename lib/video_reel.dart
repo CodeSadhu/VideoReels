@@ -4,10 +4,6 @@ import 'package:video_reels/widgets/bottom_section.dart';
 import 'package:video_reels/widgets/video_description.dart';
 
 class VideoReel extends StatelessWidget {
-	// Widget get topSection => Container(
-	// 	height: 100,
-	// 	color: Colors.yellow[300],
-	// 	);
 
 	Widget get middleSection => Expanded(
 		child: Row(
@@ -22,13 +18,7 @@ class VideoReel extends StatelessWidget {
 			backgroundColor: Colors.black,
 			body: Column(
 			children: [
-				//Top
-				// topSection,
-
-				//Middle
 				middleSection,
-
-				//Bottom
 				BottomSection(),
 			],
 			),
